@@ -50,6 +50,10 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      build: {
+        src: 'public/style.css',
+        dest: 'public/style.css'
+      }
 
     },
 

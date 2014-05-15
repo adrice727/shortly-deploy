@@ -1,9 +1,9 @@
 // // NOTE: this file is not needed when using MongoDB
 // var db = require('../config');
-// var User = require('../models/user');
+// // var User = require('../models/user');
 
-// var Users = new db.Collection();
+// var Users = db.users;
 
-// Users.model = User;
+// // Users.model = User;
 
 // module.exports = Users;

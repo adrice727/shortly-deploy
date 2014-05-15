@@ -8,7 +8,7 @@ var urlSchema = new mongoose.Schema({
   code: String,
   title: String,
   visits: Number,
-  time : { type : Date, default: Date.now }
+  time : { type : Date, default: Date.now },
 });
 
 var Link = db.model('Link', urlSchema);
