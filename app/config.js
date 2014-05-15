@@ -2,13 +2,20 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 var crypto = require('crypto');
+var mongoURI = process.env.mongoLab || 'mongodb://localhost/forshortly';
 
 
 var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
+mongoose.connect(mongoURI);
 
+db.on('error', console.error.bind(console, 'connection error:'));
+
+
+
+
+//Initial setup for mongo.  Needed to be moved to respective model files.
+// db.once('open', function() {
 // var urlSchema = new mongoose.Schema({
 //   url: String,
 //   base_url: String,
@@ -50,9 +57,10 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 // });
 
-mongoose.connect('mongodb://localhost/forshortly');
 
 
+
+//Old db setup for sqlite and bookshelf/knex:
 // var Bookshelf = require('bookshelf');
 // var path = require('path');
 

@@ -5,51 +5,29 @@ var mongoose = require('mongoose');
 
 
 var userSchema = new mongoose.Schema({
-  username: String,
-  password: String
+  username: {type: String, required: true, index : {unique: true}},
+  password: {type: String, rrequired: true }
 });
 
-// userSchema.method('comparePassword', function(attemptedPassword, callback) {
-//   bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
-//     callback(isMatch);
-//   });
-// });
 
-// userSchema.method('hashPassword', function() {
-//   var cipher = Promise.promisify(bcrypt.hash);
-//   return cipher(this.get('password'), null, null).bind(this)
-//     .then(function(hash) {
-//       this.set('password', hash);
-//     });
-// });
-
-
+// Hashes the user password before saving to the database
+userSchema.pre('save', function(next) {
+  var cipher = Promise.promisify(bcrypt.hash);
+  return cipher(this.get('password'), null, null).bind(this)
+  .then(function(hash) {
+    this.set('password', hash);
+    next();
+  });
+});
 userSchema.methods.comparePassword =  function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
     callback(isMatch);
   });
 };
 
-userSchema.methods.hashPassword = function() {
-  var cipher = Promise.promisify(bcrypt.hash);
-  return cipher(this.get('password'), null, null).bind(this)
-    .then(function(hash) {
-      this.set('password', hash);
-    });
-};
-
-
 var User = mongoose.model('User', userSchema);
 
-//console.log(User);
-
-userSchema.on('init', function(user) {
-  user.hashPassword();
-});
-
 module.exports = User;
-
-
 
 
 

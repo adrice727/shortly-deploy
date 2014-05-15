@@ -11,13 +11,19 @@ var urlSchema = new mongoose.Schema({
   time : { type : Date, default: Date.now },
 });
 
+urlSchema.pre('save', function(next){
+  var code = createSha(this.url);
+  this.code = code;
+  next();
+});
+
 var Link = db.model('Link', urlSchema);
 
-urlSchema.on('init', function(link) {
+var createSha = function(url) {
   var shasum = crypto.createHash('sha1');
-  shasum.update(link.get('url'));
-  link.set('code', shasum.diegest('hex'.slice(0,5)));
-});
+  shasum.update(url);
+  return shasum.diegest('hex'.slice(0,5));
+};
 
 module.exports = Link;
 
