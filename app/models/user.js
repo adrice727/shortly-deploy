@@ -24,13 +24,13 @@ var userSchema = new mongoose.Schema({
 // });
 
 
-userSchema.method.comparePassword =  function(attemptedPassword, callback) {
+userSchema.methods.comparePassword =  function(attemptedPassword, callback) {
   bcrypt.compare(attemptedPassword, this.get('password'), function(err, isMatch) {
     callback(isMatch);
   });
 };
 
-userSchema.method.hashPassword = function() {
+userSchema.methods.hashPassword = function() {
   var cipher = Promise.promisify(bcrypt.hash);
   return cipher(this.get('password'), null, null).bind(this)
     .then(function(hash) {
@@ -39,8 +39,9 @@ userSchema.method.hashPassword = function() {
 };
 
 
-User = db.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
 
+//console.log(User);
 
 userSchema.on('init', function(user) {
   user.hashPassword();
