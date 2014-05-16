@@ -44,8 +44,13 @@ module.exports = function(grunt) {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
+          'node_modules/',
           'public/lib/**/*.js',
-          'public/dist/**/*.js'
+          'public/dist/**/*.js',
+          'public/dist/**/*.css',
+          'public/dist/**/*.min.js',
+          'public/dist/**/*.min.css'
+
         ]
       }
     },
