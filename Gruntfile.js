@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     concat: {
         dist: {
             src: ['public/client/**/*.js'],
-            dest: 'public/dist/<%= pkg.name %>.js'
+            dest: 'public/dist/production.js'
         }
     },
 
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
     cssmin: {
       build: {
         src: 'public/style.css',
-        dest: 'public/style.min.css'
+        dest: 'public/dist/style.min.css'
       }
 
     },

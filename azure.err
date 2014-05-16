@@ -1,24 +1,10 @@
-Wed May 14 2014 14:54:37 GMT-0700 (PDT):
-{ [Error: Error: Website with given name shortly already exists.]
+Thu May 15 2014 19:47:36 GMT-0700 (PDT):
+{ [Error: Missing character "="]
   stack: [Getter/Setter],
-  __frame: 
-   { name: 'createSite',
-     line: 385,
-     file: '/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site._js',
-     prev: 
-      { name: '__4',
-        line: 202,
-        file: '/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site._js',
-        prev: undefined,
-        active: false,
-        offset: 50,
-        col: 12 },
-     active: false,
-     offset: 20,
-     col: 21 },
+  __frame: undefined,
   rawStack: [Getter] }
-Error: Error: Website with given name shortly already exists.
-    at createSite__3 (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/websites/websitesclient._js:308:34)
-    at createSite (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site._js:405:21)
-    at __4 (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site._js:252:12)
+Error: Missing character "="
+    at ConnectionStringParser._parse (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/azure-common/lib/services/connectionstringparser.js:86:11)
+    at Object.exports.parse (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/node_modules/azure-common/lib/services/connectionstringparser.js:219:33)
+    at siteAppsettings_addCommand__2 (/Users/student/.nvm/v0.10.26/lib/node_modules/azure-cli/lib/commands/asm/site.appsetting._js:71:41)
 
