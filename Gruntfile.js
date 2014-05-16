@@ -4,10 +4,8 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     concat: {
         dist: {
-            src: [
-                'public/client/*.js',
-            ],
-            dest:'public/dist/production.js'
+            src: ['public/client/**/*.js'],
+            dest: 'public/dist/<%= pkg.name %>.js'
         }
     },
 
@@ -35,8 +33,12 @@ module.exports = function(grunt) {
 
     jshint: {
       files: [
+      'Gruntfile.js',
         'app/**/*.js',
-        'public/client/*.js'
+        'public/**/*.js',
+        'lib/**/*.js',
+        './*.js',
+        'spec/**/*.js'
       ],
       options: {
         force: 'true',
@@ -110,7 +112,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'concat', 'uglify', 'jshint', 'mochaTest'
+    'jshint', 'concat', 'cssmin', 'uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -122,7 +124,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-    'build'
+    'build', 'upload'
   ]);
 
 

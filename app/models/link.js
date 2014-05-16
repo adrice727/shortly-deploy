@@ -22,7 +22,7 @@ var Link = db.model('Link', urlSchema);
 var createSha = function(url) {
   var shasum = crypto.createHash('sha1');
   shasum.update(url);
-  return shasum.diegest('hex'.slice(0,5));
+  return shasum.digest('hex'.slice(0,5));
 };
 
 module.exports = Link;
